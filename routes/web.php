@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('shop');
+    return view('welcome');
 });
 
-
+Route::get('pages', 'PageIndexController@index')->name('pages');

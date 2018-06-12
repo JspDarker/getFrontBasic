@@ -15,9 +15,12 @@
                         </div>
                         <div class="mega-menu-category">
                             <ul class="nav">
+
+                                {{--This is menu leve1--}}
+                                @foreach($menu_level_1 as $item)
                                 <li>
                                     <a href="#">
-                                        <i class="icon fa fa-camera fa-fw"></i> Camera & Photo</a>
+                                        <i class="icon fa {{ $item->icon }} fa-fw"></i> {{ $item->name }} </a>
                                     <div class="wrap-popup column1">
                                         <div class="popup">
                                             <div class="row">
@@ -74,7 +77,11 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
+                                @endforeach
+                                {{--This is menu leve1--}}
+
+
+                                {{--<li>
                                     <a href="#">
                                         <i class="icon fa fa-desktop fa-fw"></i> Computers</a>
                                     <div class="wrap-popup column1">
@@ -133,6 +140,7 @@
                                         </div>
                                     </div>
                                 </li>
+
                                 <li>
                                     <a href="shop_grid.html">
                                         <i class="icon fa fa-apple fa-fw"></i> Apple Store</a>
@@ -192,10 +200,12 @@
                                         </div>
                                     </div>
                                 </li>
+
                                 <li class="nosub">
                                     <a href="#">
                                         <i class="icon fa fa-location-arrow fa-fw"></i> Car Electronic</a>
                                 </li>
+
                                 <li>
                                     <a href="shop_grid.html">
                                         <i class="icon fa fa-headphones fa-fw"></i> Headphones</a>
@@ -256,6 +266,7 @@
                                         </div>
                                     </div>
                                 </li>
+
                                 <li>
                                     <a href="#">
                                         <i class="icon fa fa-microphone fa-fw"></i> Accessories</a>
@@ -315,23 +326,31 @@
                                         </div>
                                     </div>
                                 </li>
+
                                 <li class="nosub">
                                     <a href="shop_grid.html">
                                         <i class="icon fa fa-gamepad fa-fw"></i> Game &amp; Video</a>
                                 </li>
+
                                 <li class="nosub">
                                     <a href="shop_grid.html">
                                         <i class="glyphicon glyphicon-time"></i> Watches</a>
                                 </li>
+
                                 <li class="nosub">
                                     <a href="shop_grid.html">
                                         <i class="icon fa fa-lightbulb-o fa-fw"></i> Lights &amp; Lighting</a>
-                                </li>
+                                </li>--}}
+
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+            {{--/.END MENU --}}
+
+
+
             <div class="col-md-9 col-sm-8">
                 <div class="mtmegamenu">
                     <ul>
