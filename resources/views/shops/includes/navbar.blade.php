@@ -17,66 +17,80 @@
                             <ul class="nav">
 
                                 {{--This is menu leve1--}}
-                                @foreach($menu_level_1 as $item)
-                                <li>
-                                    <a href="#">
-                                        <i class="icon fa {{ $item->icon }} fa-fw"></i> {{ $item->name }} </a>
-                                    <div class="wrap-popup column1">
-                                        <div class="popup">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <ul class="nav">
-                                                        <li>
-                                                            <a href="shop_grid.html">
-                                                                <span>Canon</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="shop_grid.html">
-                                                                <span>Nikon</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="shop_grid.html">
-                                                                <span>Olympus</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="shop_grid.html">
-                                                                <span>ALPA</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="shop_grid.html">
-                                                                <span>Bolex</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="shop_grid.html">
-                                                                <span>Samsung </span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="shop_grid.html">
-                                                                <span>Panasonic</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="shop_grid.html">
-                                                                <span>Thomson </span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="shop_grid.html">
-                                                                <span>Bell & Howell</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
+
+                                @foreach($tired as $menu)
+                                    @if($menu->Level2 != null)
+                                        <li>
+                                            <a href="{{ $menu->url }}">
+                                                <i class="icon fa {{ $menu->icon }} fa-fw"></i> {{ $menu->name }} </a>
+                                            <div class="wrap-popup column1">
+                                                <div class="popup">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <ul class="nav">
+                                                                @php $flag = explode(',',$menu->Level2); @endphp
+
+                                                                @foreach($flag as $l2)
+                                                                    @php $flag = explode('11',$l2); @endphp
+                                                                    <li>
+                                                                        <a href="{{ $flag[1] }}">
+                                                                            <span>{{ $flag[0] }}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                @endforeach
+                                                                {{--<li>
+                                                                    <a href="shop_grid.html">
+                                                                        <span>Nikon</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop_grid.html">
+                                                                        <span>Olympus</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop_grid.html">
+                                                                        <span>ALPA</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop_grid.html">
+                                                                        <span>Bolex</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop_grid.html">
+                                                                        <span>Samsung </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop_grid.html">
+                                                                        <span>Panasonic</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop_grid.html">
+                                                                        <span>Thomson </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop_grid.html">
+                                                                        <span>Bell & Howell</span>
+                                                                    </a>
+                                                                </li>--}}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                        </li>
+                                    @else
+                                        <li class="nosub">
+                                            <a href="{{ $menu->url }}">
+                                                <i class="icon fa {{ $menu->icon }} fa-fw"></i>{{ $menu->name }}</a>
+                                        </li>
+                                    @endif
+
                                 @endforeach
                                 {{--This is menu leve1--}}
 

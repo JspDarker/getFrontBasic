@@ -30,9 +30,13 @@ class PageIndexController extends Controller
         dd($sql1);*/
 
         /*DB::enableQueryLog();*/
-        $menu_level_1 = DB::table('categories')
-            ->select('name', 'icon')
-            ->where('id_parent','=',null)->get();
+//        $menu_level_1 = DB::table('categories')
+//            ->join('page_url','categories.id_url','=','page_url.id')
+//            ->select('name', 'icon','page_url.url')
+//            ->where('id_parent','=',null)->get();
+       /* echo "<pre>";
+        print_r($menu_level_1);
+        echo "</pre>";*/
         /*$queries = DB::getQueryLog();
 
         echo "<pre>";
@@ -41,25 +45,78 @@ class PageIndexController extends Controller
         echo "<pre>";
         print_r($menu_level_1);
         echo "</pre>";*/
-        DB::enableQueryLog();
+        #DB::enableQueryLog();
 
-        $sa = DB::table('categories')
+        /*$sa = DB::table('categories')
             ->join('page_url', function ($join){
                 $join->on('categories.id_url','=', 'page_url.id')
                     ->where('categories.id_parent','<>',null);
             })
-            ->get();
-        $queries = DB::getQueryLog();
+            ->get();*/
 
 
-        echo "<pre>";
+
+
+        /*$menu_level_2 = DB::table('categories')
+            ->leftJoin('page_url','categories.id_url','=','page_url.id')
+            ->selectRaw('name, page_url.url')
+            ->whereRaw('id_parent is not null')
+            ->get();*/
+
+        #$queries = DB::getQueryLog();
+
+
+        /*echo "<pre>";
         print_r($queries);
         echo "</pre>";
         echo "<pre>";
-        print_r($sa);
-        echo "</pre>";
+        print_r($menu_level_2);
+        echo "</pre>";*/
 
-        return view('shop',compact('menu_level_1'));
+        /*$test = DB::table('meuls')
+            ->selectRaw(DB::raw('GROUP_CONCAT(name,1,id_url) AS level2'))
+            ->groupBy('level_2')
+            ->get();
+        echo "<pre>";
+        print_r($test);
+        echo "</pre>";*/
+        #DB::enableQueryLog();
+
+        /*$complete = DB::table('categories')
+            ->join('page_url', function($a) {
+                $a->on('categories.id_url','=','page_url.id')
+                    ->where('categories.id_parent','=','IS NOT NULL');
+            })
+            ->leftJoin('meuls','categories.id','=','meuls.id')
+            ->select(
+                DB::raw('GROUP_CONCAT(meuls.name,11,meuls.id_url) AS level2'),
+                'categories.name AS LEVEL1',
+                'page_url.url AS url1'
+            )
+            ->where('categories.id_parent','=','IS NULL')
+            ->groupBy('categories.id')
+            ->get();*/
+
+        //TODO: completed menu
+        $tired = DB::table('categories')->
+        leftJoin('meuls','categories.id','=','meuls.level_2')->
+        where('categories.id','<',7)->
+        groupBy('categories.id')->
+        select('categories.*',
+            DB::raw('GROUP_CONCAT(meuls.name,11,meuls.id_url) AS Level2')
+        )->
+        get();
+
+        #$queries = DB::getQueryLog();
+
+//        echo "<pre>";
+//        print_r($queries);
+//        echo "</pre>";
+//        echo "<pre>";
+//        print_r($tired);
+//        echo "</pre>";
+//        dd();
+        return view('shop',compact('tired'));
     }
 
 
@@ -89,6 +146,34 @@ class PageIndexController extends Controller
 
 
 
+
+
+
+
+    public function scopeCompanies($query) {
+        return $query->
+        leftJoin('users', 'company_id', '=', 'companies.id')->
+        select(
+            DB::raw('GROUP_CONCAT(username) AS Users'),
+            'companies.index AS Index',
+            'companies.name AS Company Name',
+            'companies.address AS Address')
+            ->groupBy('companies.index')
+            ->orderBy('Users','DESC')
+            ->get();
+    }
+
+    public function tired()
+    {
+        DB::table('categories')->
+            leftJoin('meuls','categories.id','=','meuls.level_2')->
+            where('categories.id','<',7)->
+            groupBy('categories.id')->
+            select('categories.*',
+            DB::raw('GROUP_CONCAT(meuls.name,11,meuls.id_url) AS Level2')
+            )->
+            get();
+    }
 
 }
 
