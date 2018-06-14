@@ -18,3 +18,18 @@ Route::get('/', function () {
 });
 
 Route::get('pages', 'PageIndexController@index')->name('pages');
+
+Route::get('detail',function (){
+    return view('shops.details.detail');
+
+});
+
+Route::get('buys',function (){
+    return view('shops.shopping.buy');
+
+});
+
+Route::get('checkout',function (){
+    return view('shops.checkout.checkout');
+
+});

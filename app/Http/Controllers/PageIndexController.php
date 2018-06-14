@@ -4,13 +4,65 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\HomeLayout;
 
 class PageIndexController extends Controller
 {
 
+
+    /*public function navBar()
+    {
+        $tired = (new HomeLayout)->navBar();
+        return view('shops.layouts.master', compact('tired'));
+    }*/
     public function index()
     {
+        //TODO: completed menu
+        /*$tired1 = DB::table('categories')->
+        leftJoin('meuls','categories.id','=','meuls.level_2')->
+        where('categories.id','<',7)->
+        groupBy('categories.id')->
+        select('categories.*',
+            DB::raw('GROUP_CONCAT(meuls.name,11,meuls.id_url) AS Level2')
+        )->
+        get();*/
+
+        #$tired = (new HomeLayout)->navBar();
+
+        return view('shop');
+    }
+
+
+    public function bugQuery()
+    {
+        /*
+            select ca.`name`, pu.url, c2.level_2
+            from categories ca
+            inner join page_url pu
+            on ca.`id_url` = pu.id
+            left join (
+                select c2.id_parent, group_concat(c2.name,'::',p.url) as level_2
+                from categories c2
+                inner join page_url p
+                on c2.id_url = p.id
+                where c2.id_parent is not null
+                group by c2.id_parent
+            )c2
+            on ca.id = c2.id_parent
+
+            where ca.id_parent is null
+         * */
+
+        #$queries = DB::getQueryLog();
+
+//        echo "<pre>";
+//        print_r($queries);
+//        echo "</pre>";
+//        echo "<pre>";
+//        print_r($tired);
+//        echo "</pre>";
+//        dd();
+
         /*DB::enableQueryLog();
 
         $sql = DB::table('customers')->select('email')->get();
@@ -34,9 +86,9 @@ class PageIndexController extends Controller
 //            ->join('page_url','categories.id_url','=','page_url.id')
 //            ->select('name', 'icon','page_url.url')
 //            ->where('id_parent','=',null)->get();
-       /* echo "<pre>";
-        print_r($menu_level_1);
-        echo "</pre>";*/
+        /* echo "<pre>";
+         print_r($menu_level_1);
+         echo "</pre>";*/
         /*$queries = DB::getQueryLog();
 
         echo "<pre>";
@@ -96,51 +148,6 @@ class PageIndexController extends Controller
             ->where('categories.id_parent','=','IS NULL')
             ->groupBy('categories.id')
             ->get();*/
-
-        //TODO: completed menu
-        $tired = DB::table('categories')->
-        leftJoin('meuls','categories.id','=','meuls.level_2')->
-        where('categories.id','<',7)->
-        groupBy('categories.id')->
-        select('categories.*',
-            DB::raw('GROUP_CONCAT(meuls.name,11,meuls.id_url) AS Level2')
-        )->
-        get();
-
-        #$queries = DB::getQueryLog();
-
-//        echo "<pre>";
-//        print_r($queries);
-//        echo "</pre>";
-//        echo "<pre>";
-//        print_r($tired);
-//        echo "</pre>";
-//        dd();
-        return view('shop',compact('tired'));
-    }
-
-
-    public function accessMenu()
-    {
-        /*
-            select ca.`name`, pu.url, c2.level_2
-            from categories ca
-            inner join page_url pu
-            on ca.`id_url` = pu.id
-            left join (
-                select c2.id_parent, group_concat(c2.name,'::',p.url) as level_2
-                from categories c2
-                inner join page_url p
-                on c2.id_url = p.id
-                where c2.id_parent is not null
-                group by c2.id_parent
-            )c2
-            on ca.id = c2.id_parent
-
-            where ca.id_parent is null
-         * */
-
-
 
     }
 

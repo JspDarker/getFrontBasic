@@ -2958,7 +2958,8 @@ button.subscribe:before {
 }
 .payment {
 	margin-top: 10px;
-margin-bottom:10px display: inline-block;
+	margin-bottom:10px;
+	display: inline-block;
 	width: 100%;
 	text-align: right;
 }

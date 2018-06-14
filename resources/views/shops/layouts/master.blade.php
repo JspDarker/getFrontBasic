@@ -1,3 +1,7 @@
+@php
+    use App\HomeLayout;
+    $tired = (new HomeLayout)->navBar();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,23 +88,7 @@
     @include('shops.includes.navbar')
     <!-- end nav -->
 
-    <!-- Home Slider Start -->
-    @include('shops.includes.slider')
-
-    <!-- main container TOP SALLER -->
-    @include('shops.indexPage.top-sell')
-    <!-- end main container TOP SALLER -->
-
-    <!--special-products-->
-    @include('shops.indexPage.special')
-
-    <!--/.special-products-->
-
-
-
-    <!-- category area start TODO: Khong can lam cai nay -->
-    @include('shops.indexPage.category-area')
-    <!-- category-area end -->
+    @yield('content')
 
     <!-- Footer -->
 
@@ -171,6 +159,7 @@
     });
 </script>
 
+@yield('script-ajax')
 
 
 </body>
