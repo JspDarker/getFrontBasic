@@ -7,7 +7,9 @@
 
 @section('content')
     <!-- Main Container -->
-    @include('shops.details.product-one')
+    @foreach($items as $item)
+        @include('shops.details.product-one')
+    @endforeach
     <!-- Main Container End -->
 
 
@@ -17,4 +19,8 @@
 
 @endsection
 
+@section('scripts')
+    <!--cloud-zoom js -->
+    <script type="text/javascript" src="sources/js/cloud-zoom.js"></script>
+@stop
 

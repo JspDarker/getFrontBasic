@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meul extends Model
 {
-   /* protected $table = 'meuls';
+    protected $table = 'meuls';
 
     public function Categories()
     {
@@ -16,5 +16,5 @@ class Meul extends Model
     public function pageUrl()
     {
         $this->belongsTo(PageUrl::class);
-    }*/
+    }
 }

@@ -6,16 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categorie extends Model
 {
-    /*protected $table = 'categories';
+    protected $table = 'categories';
 
     public function pageUrl()
     {
-        $this->belongsTo(PageUrl::class);
+        return $this->belongsTo(PageUrl::class);
     }
 
     public function level_2()
     {
-        $this->hasMany(Meul::class);
-    }*/
+        return $this->hasMany(Meul::class,'id','level_2');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 
 }

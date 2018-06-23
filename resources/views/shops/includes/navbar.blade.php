@@ -22,7 +22,7 @@
                                 @foreach($tired as $menu)
                                     @if($menu->Level2 != null)
                                         <li>
-                                            <a href="{{ $menu->url }}">
+                                            <a href="{{ route('girds',$menu->url) }}">
                                                 <i class="icon fa {{ $menu->icon }} fa-fw"></i> {{ $menu->name }} </a>
                                             <div class="wrap-popup column1">
                                                 <div class="popup">
@@ -34,7 +34,7 @@
                                                                 @foreach($flag as $l2)
                                                                     @php $flag = explode('11',$l2); @endphp
                                                                     <li>
-                                                                        <a href="{{ $flag[1] }}">
+                                                                        <a href="{{ route('girds',$flag[1]) }}">
                                                                             <span>{{ $flag[0] }}</span>
                                                                         </a>
                                                                     </li>
@@ -87,7 +87,7 @@
                                         </li>
                                     @else
                                         <li class="nosub">
-                                            <a href="{{ $menu->url }}">
+                                            <a href="{{ route('girds',$menu->url) }}">
                                                 <i class="icon fa {{ $menu->icon }} fa-fw"></i>{{ $menu->name }}</a>
                                         </li>
                                     @endif
@@ -371,7 +371,7 @@
                     <ul>
                         <li class="mt-root demo_custom_link_cms">
                             <div class="mt-root-item">
-                                <a href="index.html">
+                                <a href="{{ route('pages') }}">
                                     <div class="title title_font">
                                         <span class="title-text">Home</span>
                                     </div>

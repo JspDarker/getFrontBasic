@@ -68,8 +68,9 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
+                    <a href="{{ url('/pages') }}">Home Shope</a>
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <button class="btn-primary btn">{{ Auth::user()->name }}</button>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
@@ -78,9 +79,6 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>

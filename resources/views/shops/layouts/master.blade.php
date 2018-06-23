@@ -158,7 +158,7 @@
             });
     });
 </script>
-
+@yield('scripts')
 @yield('script-ajax')
 
 

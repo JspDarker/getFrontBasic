@@ -12,19 +12,43 @@
                     <!-- top links -->
                     <div class="headerlinkmenu col-lg-8 col-md-7 col-sm-8 col-xs-12">
                         <div class="links">
-                            <div class="myaccount">
-                                <a title="My Account" href="account_page.html">
-                                    <i class="fa fa-user"></i>
-                                    <span class="hidden-xs">My Account</span>
-                                </a>
-                            </div>
+                            @guest
+                                <div class="myaccount">
+                                    <a title="My Account" href="{{ route('register') }}">
+                                        <i class="fa fa-user"></i>
+                                        <span class="hidden-xs">Register</span>
+                                    </a>
+                                </div>
 
-                            <div class="login">
-                                <a href="account_page.html">
-                                    <i class="fa fa-unlock-alt"></i>
-                                    <span class="hidden-xs">Log In</span>
-                                </a>
-                            </div>
+                                <div class="login">
+                                    <a href="{{ route('login') }}">
+                                        <i class="fa fa-unlock-alt"></i>
+                                        <span class="hidden-xs">Log In</span>
+                                    </a>
+                                </div>
+                            @else
+                                <div class="myaccount">
+                                    <a title="My Account">
+                                        <i class="fa fa-user"></i>
+                                        <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                                    </a>
+                                </div>
+                                <div class="login">
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();
+                                    ">
+                                        <i class="fa fa-unlock-alt"></i>
+                                        <span class="hidden-xs">Log out</span>
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </div>
+                            @endguest
+
+
                         </div>
                     </div>
                 </div>
@@ -35,7 +59,7 @@
                 <div class="col-sm-3 col-md-3 col-xs-12">
                     <!-- Header Logo -->
                     <div class="logo">
-                        <a title="e-commerce" href="index.html">
+                        <a title="e-commerce" href="{{ route('pages') }}">
                             <img alt="responsive theme logo" src="sources/images/logo.png">
                         </a>
                     </div>

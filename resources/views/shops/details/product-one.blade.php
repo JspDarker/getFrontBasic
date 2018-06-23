@@ -5,38 +5,45 @@
             <div class="col-main">
                 <div class="product-view-area">
                     <div class="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">
-                        <div class="icon-sale-label sale-left">Sale</div>
+
+                        @if($item->new != 0 & $item->status != 0)
+                            <div class="icon-new-label new-right">New</div>
+                            <div class="icon-sale-label sale-left">Sale</div>
+                        @else
+                            <div class="icon-new-label new-right">New</div>
+                        @endif
                         <div class="large-image">
-                            <a href="sources/images/products/img03.jpg" class="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20">
-                                <img class="zoom-img" src="sources/images/products/img03.jpg" alt="products"> </a>
+                            <a href="sources/images/products/{{ $item->image }}" class="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:{{ $item->name }}tX:20">
+                                <img style="width: 100%;!important;" class="zoom-img" src="sources/images/products/{{ $item->image }}" alt="{{ $item->name }}"> </a>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-lg-7 col-md-7 product-details-area">
 
                         <div class="product-name">
-                            <h1>Lorem Ipsum is simply</h1>
+                            <h1>{{ $item->name }}</h1>
                         </div>
                         <div class="price-box">
-                            <p class="special-price">
-                                <span class="price-label">Special Price</span>
-                                <span class="price"> $329.99 </span>
-                            </p>
-                            <p class="old-price">
-                                <span class="price-label">Regular Price:</span>
-                                <span class="price"> $359.99 </span>
-                            </p>
+                            @if($item->promotion_price == 0)
+                                <p class="special-price">
+                                    <span class="price-label">Special Price</span>
+                                    <span class="price">{{ number_format($item->price) }} vnđ</span>
+                                </p>
+
+                            @else
+                                <p class="special-price">
+                                    <span class="price-label">Special Price</span>
+                                    <span class="price">{{ number_format($item->price) }} vnđ</span>
+                                </p>
+                                <p class="old-price">
+                                    <span class="price-label">Regular Price:</span>
+                                    <span class="price">{{ number_format($item->promotion_price) }} vnđ</span>
+                                </p>
+                            @endif
                         </div>
 
                         <div class="short-description">
                             <h2>Quick Overview</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor.
-                                Donec non est at libero vulputate rutrum.
-                            <p> Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti
-                                sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere
-                                at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque
-                                in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis
-                                lobortis.
-                            </p>
+                            <p>{{ $item->detail }}</p>
 
                         </div>
 
